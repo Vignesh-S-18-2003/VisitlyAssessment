@@ -1,13 +1,25 @@
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { UserButton, useUser } from "@clerk/clerk-react";
+import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function AppNavbar() {
+  const { isSignedIn } = useUser();
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">User Management</Navbar.Brand>
-        <Nav className="ml-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/users">Users</Nav.Link>
+        <Navbar.Brand as={Link} to="/">User Management</Navbar.Brand>
+        <Nav>
+          {isSignedIn ? (
+            <>
+              <UserButton afterSignOutUrl="/login" />
+            </>
+          ) : (
+            <>
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+              <Nav.Link as={Link} to="/register">Register</Nav.Link>
+            </>
+          )}
         </Nav>
       </Container>
     </Navbar>
