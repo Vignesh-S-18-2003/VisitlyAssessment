@@ -1,48 +1,41 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Container } from "react-bootstrap";
-import userService from "../services/userService";
+import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import userService from "../services/userService"; // Assuming you renamed your services accordingly
 
-function UserList({ onEdit }) {
-  const [users, setUsers] = useState([]);
+function BookList({ onEdit }) {
+  const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    userService.getUsers().then(setUsers);
+    userService.getBooks().then(setBooks); // Adjust the service call to getBooks
   }, []);
 
-  const deleteUser = (id) => {
-    userService.deleteUser(id).then(() => {
-      setUsers(users.filter(user => user.id !== id));
+  const deleteBook = (id) => {
+    userService.deleteBook(id).then(() => {
+      setBooks(books.filter(book => book.id !== id));
     });
   };
 
   return (
     <Container>
-      <h2>User List</h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                <Button variant="warning" size="sm" onClick={() => onEdit(user)}>Edit</Button>{' '}
-                <Button variant="danger" size="sm" onClick={() => deleteUser(user.id)}>Delete</Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <h2>Book List</h2>
+      <Row>
+        {books.map(book => (
+          <Col key={book.id} md={3} sm={6} xs={12}>
+            <Card>
+              <Card.Body>
+                <Card.Title>{book.bookName}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{book.authorName}</Card.Subtitle>
+                <Card.Text>{book.description}</Card.Text>
+                <Card.Text><strong>Publish Date:</strong> {book.publish}</Card.Text>
+                <Button variant="warning" size="sm" onClick={() => onEdit(book)}>Edit</Button>{' '}
+                <Button variant="danger" size="sm" onClick={() => deleteBook(book.id)}>Delete</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 }
 
-export default UserList;
+export default BookList;

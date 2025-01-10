@@ -3,10 +3,12 @@ import API_CONFIG from "../config/apiConfig";
 
 const API_BASE_URL = API_CONFIG.API_BASE_URL;
 
-const getUsers = () => axios.get(`${API_BASE_URL}/users`).then(res => res.data);
-const getUserById = (id) => axios.get(`${API_BASE_URL}/users/${id}`).then(res => res.data);
-const createUser = (user) => axios.post(`${API_BASE_URL}/users`, user);
-const updateUser = (user) => axios.put(`${API_BASE_URL}/users/${user.id}`, user);
-const deleteUser = (id) => axios.delete(`${API_BASE_URL}/users/${id}`);
+// Replace 'users' with 'books' in the endpoints
 
-export default { getUsers, getUserById, createUser, updateUser, deleteUser };
+const getBooks = () => axios.get(`${API_BASE_URL}/books`).then(res => res.data);
+const getBookById = (id) => axios.get(`${API_BASE_URL}/books/${id}`).then(res => res.data);
+const createBook = (book) => axios.post(`${API_BASE_URL}/books`, book);
+const updateBook = (book) => axios.put(`${API_BASE_URL}/books/${book.id}`, book);
+const deleteBook = (id) => axios.delete(`${API_BASE_URL}/books/${id}`);
+
+export default { getBooks, getBookById, createBook, updateBook, deleteBook };

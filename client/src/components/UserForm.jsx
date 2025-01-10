@@ -1,50 +1,82 @@
 import { useState, useEffect } from "react";
-import { Form, Button, Container } from "react-bootstrap";
-import userService from "../services/userService";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import userService from "../services/userService"; // Assuming you renamed your services accordingly
 
-function UserForm({ selectedUser, onUserSaved }) {
-  const [user, setUser] = useState({ name: "", email: "" });
+function BookForm({ selectedBook, onBookSaved }) {
+  const [book, setBook] = useState({ bookName: "", authorName: "", description: "", publish: "" });
 
   useEffect(() => {
-    setUser(selectedUser || { name: "", email: "" });
-  }, [selectedUser]);
+    setBook(selectedBook || { bookName: "", authorName: "", description: "", publish: "" });
+  }, [selectedBook]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const apiCall = user.id ? userService.updateUser(user) : userService.createUser(user);
+    const apiCall = book.id ? userService.updateBook(book) : userService.createBook(book);
 
     apiCall.then(() => {
-      setUser({ name: "", email: "" });
-      onUserSaved();
+      setBook({ bookName: "", authorName: "", description: "", publish: "" });
+      onBookSaved();
     });
   };
 
   return (
     <Container>
-      <h2>{user.id ? "Edit User" : "Add User"}</h2>
+      <h2>{book.id ? "Edit Book" : "Add Book"}</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            value={user.name}
-            onChange={(e) => setUser({ ...user, name: e.target.value })}
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={user.email}
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">{user.id ? "Update" : "Add"}</Button>
+        <Row>
+          <Col md={6}>
+            <Form.Group>
+              <Form.Label>Book Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={book.bookName}
+                onChange={(e) => setBook({ ...book, bookName: e.target.value })}
+                required
+              />
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group>
+              <Form.Label>Author Name</Form.Label>
+              <Form.Control
+                type="text"
+                value={book.authorName}
+                onChange={(e) => setBook({ ...book, authorName: e.target.value })}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <Form.Group>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={book.description}
+                onChange={(e) => setBook({ ...book, description: e.target.value })}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <Form.Group>
+              <Form.Label>Publish Date</Form.Label>
+              <Form.Control
+                type="date"
+                value={book.publish}
+                onChange={(e) => setBook({ ...book, publish: e.target.value })}
+                required
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Button variant="primary" type="submit">{book.id ? "Update" : "Add"}</Button>
       </Form>
     </Container>
   );
 }
 
-export default UserForm;
+export default BookForm;

@@ -1,4 +1,5 @@
 package com.example.visitly_assessment.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +15,23 @@ public class visitlyService {
     @Autowired
     private visitlyRepository visitlyRepository;
 
-    public List<visitlyModel> getAllUsers() {
+    // Get all books
+    public List<visitlyModel> getAllBooks() {
         return visitlyRepository.findAll();
     }
 
-    public Optional<visitlyModel> getUserById(Long id) {
+    // Get book by ID
+    public Optional<visitlyModel> getBookById(Long id) {
         return visitlyRepository.findById(id);
     }
 
-    public visitlyModel saveUser(visitlyModel user) {
-        return visitlyRepository.save(user);
+    // Save book
+    public visitlyModel saveBook(visitlyModel book) {
+        return visitlyRepository.save(book);
     }
 
-    public void deleteUser(Long id) {
-    	visitlyRepository.deleteById(id);
+    // Delete book by ID
+    public void deleteBook(Long id) {
+        visitlyRepository.deleteById(id);
     }
 }
