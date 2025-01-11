@@ -18,7 +18,7 @@ function BookList({ books, setBooks, onEdit }) {
             <Card style={{ minHeight: "250px", marginBottom: "25px", border: "2px solid #640e40" }}>
               <Card.Body>
                 <Card.Title>{book.bookName}</Card.Title>
-                <Card.Subtitle className="mb-2" style={{ color: "#640e40" }}>
+                <Card.Subtitle className="mb-2" style={{ color: "rgb(78, 4, 50)" }}>
                   {book.authorName}
                 </Card.Subtitle>
                 <Card.Text>{book.description}</Card.Text>
