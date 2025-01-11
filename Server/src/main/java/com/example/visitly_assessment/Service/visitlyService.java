@@ -15,22 +15,30 @@ public class visitlyService {
     @Autowired
     private visitlyRepository visitlyRepository;
 
-    // Get all books
     public List<visitlyModel> getAllBooks() {
         return visitlyRepository.findAll();
     }
 
-    // Get book by ID
     public Optional<visitlyModel> getBookById(Long id) {
         return visitlyRepository.findById(id);
     }
 
-    // Save book
     public visitlyModel saveBook(visitlyModel book) {
         return visitlyRepository.save(book);
     }
 
-    // Delete book by ID
+    public visitlyModel updateBook(Long id, visitlyModel updatedBook) {
+        return visitlyRepository.findById(id)
+                .map(book -> {
+                    book.setBookName(updatedBook.getBookName());
+                    book.setAuthorName(updatedBook.getAuthorName());
+                    book.setDescription(updatedBook.getDescription());
+                    book.setPublish(updatedBook.getPublish());
+                    return visitlyRepository.save(book);
+                })
+                .orElseThrow(() -> new RuntimeException("Book not found with id: " + id));
+    }
+
     public void deleteBook(Long id) {
         visitlyRepository.deleteById(id);
     }

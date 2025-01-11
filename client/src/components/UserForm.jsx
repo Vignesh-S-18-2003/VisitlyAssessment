@@ -15,13 +15,13 @@ function BookForm({ selectedBook, onBookSaved }) {
 
     apiCall.then(() => {
       setBook({ bookName: "", authorName: "", description: "", publish: "" });
-      onBookSaved();
+      onBookSaved(); // Refresh the book list in parent component
     });
   };
 
   return (
     <Container>
-      <h2>{book.id ? "Edit Book" : "Add Book"}</h2>
+      <h2 style={{ color: "#640e40" }}>{book.id ? "Edit Book" : "Add Book"}</h2>
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col md={6}>
@@ -73,10 +73,13 @@ function BookForm({ selectedBook, onBookSaved }) {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit">{book.id ? "Update" : "Add"}</Button>
+        <Button className="mt-3" style={{ backgroundColor: "#640e40", borderColor: "#640e40" }} type="submit">
+          {book.id ? "Update" : "Add"}
+        </Button>
       </Form>
     </Container>
   );
 }
 
 export default BookForm;
+

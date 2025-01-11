@@ -2,16 +2,10 @@ import { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import userService from "../services/userService"; // Assuming you renamed your services accordingly
 
-function BookList({ onEdit }) {
-  const [books, setBooks] = useState([]);
-
-  useEffect(() => {
-    userService.getBooks().then(setBooks); // Adjust the service call to getBooks
-  }, []);
-
+function BookList({ books, setBooks, onEdit }) {
   const deleteBook = (id) => {
     userService.deleteBook(id).then(() => {
-      setBooks(books.filter(book => book.id !== id));
+      setBooks(books.filter(book => book.id !== id)); // Update list after delete
     });
   };
 
@@ -21,14 +15,26 @@ function BookList({ onEdit }) {
       <Row>
         {books.map(book => (
           <Col key={book.id} md={3} sm={6} xs={12}>
-            <Card>
+            <Card style={{ minHeight: "250px", marginBottom: "25px", border: "2px solid #640e40" }}>
               <Card.Body>
                 <Card.Title>{book.bookName}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{book.authorName}</Card.Subtitle>
+                <Card.Subtitle className="mb-2" style={{ color: "#640e40" }}>
+                  {book.authorName}
+                </Card.Subtitle>
                 <Card.Text>{book.description}</Card.Text>
-                <Card.Text><strong>Publish Date:</strong> {book.publish}</Card.Text>
-                <Button variant="warning" size="sm" onClick={() => onEdit(book)}>Edit</Button>{' '}
-                <Button variant="danger" size="sm" onClick={() => deleteBook(book.id)}>Delete</Button>
+                <Card.Text>
+                  <strong>Publish Date:</strong> {book.publish.slice(0, 10)}
+                </Card.Text>
+                <Button style={{ backgroundColor: "#640e40", borderColor: "#640e40" }} size="sm" onClick={() => onEdit(book)}>
+                  Edit
+                </Button>{" "}
+                <Button
+                  style={{ backgroundColor: "rgb(61, 20, 45)", borderColor: "#640e40" }}
+                  size="sm"
+                  onClick={() => deleteBook(book.id)}
+                >
+                  Delete
+                </Button>
               </Card.Body>
             </Card>
           </Col>

@@ -35,9 +35,16 @@ public class visitlyController {
         return visitlyService.saveBook(visitlyModel);
     }
 
+    // Update a book by ID
+    @PutMapping("/{id}")
+    public visitlyModel updateBook(@PathVariable Long id, @RequestBody visitlyModel updatedBook) {
+        return visitlyService.updateBook(id, updatedBook);
+    }
+
     // Delete a book by ID
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable Long id) {
         visitlyService.deleteBook(id);
     }
 }
+
