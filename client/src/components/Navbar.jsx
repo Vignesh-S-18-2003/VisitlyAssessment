@@ -8,7 +8,7 @@ function AppNavbar() {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand as={Link} to="/">User Management</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Book Management</Navbar.Brand>
         <Nav>
           {isSignedIn ? (
             <>
