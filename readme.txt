@@ -16,4 +16,6 @@ Server Side:
 
 GitHub Link : https://github.com/Vignesh-S-18-2003/VisitlyAssessment
 
-Demo Video : 
+Demo Video : https://drive.google.com/file/d/1X1w4zlsjdXruXu9SemGwdQI06hAZx5Ya/view?usp=drive_link
+
+*The demo video is available in repository Also*
