@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "12374000000007077",
+      "name": "visitlyBackend",
+      "domain": {
+        "id": "50024489415",
+        "name": "visitlybackend-60036397594.development"
+      },
+      "timezone": "Asia/Kolkata",
+      "env": [
+        {
+          "idx": 1,
+          "id": "60036397594",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}

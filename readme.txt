@@ -12,6 +12,13 @@ Books Page:
 Server Side:
 	1. Server is Completely developed with the help of springboot.
 	2. Database is nothing but MySQL accessed with help of JPA.
+
+Setup Instructions : 
+
+1. First you have to clone the repository at you confortable workspace of your system by "git clone https://github.com/Vignesh-S-18-2003/VisitlyAssessment"
+2. Now Open Eclipse or Other Code Editors, import the Server directory which is present in the Cloned Repository.
+3. In that goto application.properties include your Local MySQL credentials and start the application to run the Backend
+4. Now Open VsCode or other code editor, In terminal use "cd client" and then to setup front end run "npm install" and now to start front end "npm run dev"
 	
 
 GitHub Link : https://github.com/Vignesh-S-18-2003/VisitlyAssessment
